@@ -12,16 +12,19 @@ public class RollDice {
 
     public static boolean probabilityDice(int dice){
         /*
-        600回中100回出れば確率は正しい
-        けど、そうなるとは限らない。
-        600回中95回数とかのとき、だいたいあってるとかどうやって判定するん？
-        誤差を許す関数を作ればいい？
-        誤差の範囲内ならtrueを返すものを…
+        numThrow回中1/6回出れば確率は正しい。だが、必ずしもぴったり出るとは限らない。
+        なので、ここでは、誤差の範囲は前後10%まで許し、だいたい1/6回出たらTrueを返すメソッドを作成した。
+        テストでは、1~6がちゃんと1/6で出るかを確かめている。
+        ここでは、人力で設定したが、許容範囲は何か明確な制度？方法？があるならば、
+        それを使用するのが望ましいと思われる。
+        また、サイコロを投げる回数が多くなればなるほど処理の時間がかかる。
+        このプログラムはサイコロを計算するだけなのでさほど気にならないが、
+        時間のかかるプログラムの場合は、時間がかかってしまう可能性がある。
         */
         Random rand = new Random();
-        int numThrow = 60000; //この回数が大きくなるほど処理が遅くなる
-        double tole = 10; //許される誤差(%)
-        double tolerance = numThrow * tole /100;
+        int numThrow = 60000; //投げる回数
+        double tole = 1; //許される誤差(%)
+        double tolerance = numThrow * tole / 100;
         int count = 0;
         for(int i = 0; i < numThrow; i++){
             int n  = rollDice();
