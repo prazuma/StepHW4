@@ -32,6 +32,8 @@ public class MatrixTest {
                 assertEquals(c3result[i][j], c3[i][j], 0);
             }
         }
+        Object cNull = Matrix.mulMatrix(a3, b4);
+        assertNull(cNull);
     }
 
     @Test
