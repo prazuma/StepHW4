@@ -53,9 +53,8 @@ public class IsOpenNow {
         return start <= hour+24 && hour+24 < finish;
     }
 
-    public static boolean isOpenNow(int dayOfWeek, int hour){
-        int indexWeek = dayOfWeek - 1;
-        Hours[] time = hours[indexWeek];
+    public static boolean isOpenNow(int hour, Hours[] today, Hours[] yesterday){
+        Hours[] time = today;
         int i = 0;
         while(i < time.length){
             int startH = time[i].startH;
@@ -64,8 +63,7 @@ public class IsOpenNow {
                 return true;
             i++;
         }
-        int indexWeek2 = (7 + dayOfWeek -1) % 7;//24時間超表記の場合のチェック
-        time = hours[indexWeek2];
+        time = yesterday;
         i = 0;
         while(i < time.length){
             int startH = time[i].startH;
@@ -81,7 +79,11 @@ public class IsOpenNow {
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        return isOpenNow(dayOfWeek, hour);
+        int indexToday = dayOfWeek - 1;
+        int indexYesterday = (7 + dayOfWeek - 2) % 7;
+        Hours[] today = hours[indexToday];
+        Hours[] yesterday = hours[indexYesterday];
+        return isOpenNow(hour, today, yesterday);
     }
 }
 class Hours{
