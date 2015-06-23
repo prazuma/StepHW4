@@ -1,4 +1,5 @@
 import org.junit.Test;
+import sun.security.provider.Sun;
 
 import java.util.Calendar;
 
@@ -25,20 +26,26 @@ public class IsOpenNowTest {
 
     @Test
     public void testIsOpenNow() throws Exception {
-        Hours[] hours1 = new Hours[2];
-        for(int i = 0; i < hours1.length; i++)
-            hours1[i] = new Hours();
-        hours1[0].startH = 11;
-        hours1[0].finishH = 15;
-        hours1[1].startH = 19;
-        hours1[1].finishH = 28;
-        Hours[] hours2 = new Hours[1];
-        for(int i = 0; i < hours2.length; i++)
-            hours2[i] = new Hours();
-        hours2[0].startH = 11;
-        hours2[0].finishH = 17;
-        assertTrue(IsOpenNow.isOpenNow(11, hours1, hours2));
-        assertFalse(IsOpenNow.isOpenNow(9, hours1, hours2));
-        assertTrue(IsOpenNow.isOpenNow(1, hours2, hours1));
+        Hours[] Sunday = new Hours[1];
+        for(int i = 0; i < Sunday.length; i++)
+            Sunday[i] = new Hours();
+        Sunday[0].startH = 11;
+        Sunday[0].finishH = 17;
+        Hours[] Monday = new Hours[2];
+        for(int i = 0; i < Monday.length; i++)
+            Monday[i] = new Hours();
+        Monday[0].startH = 11;
+        Monday[0].finishH = 15;
+        Monday[1].startH = 19;
+        Monday[1].finishH = 28;
+        Hours[] Tuseday = new Hours[1];
+        for(int i = 0; i < Tuseday.length; i++)
+            Tuseday[i] = new Hours();
+        Tuseday[0].startH = 11;
+        Tuseday[0].finishH = 17;
+        assertTrue(IsOpenNow.isOpenNow(11, Monday, Sunday));
+        assertFalse(IsOpenNow.isOpenNow(9, Monday, Sunday));
+        assertFalse(IsOpenNow.isOpenNow(15, Monday, Sunday));
+        assertTrue(IsOpenNow.isOpenNow(1, Tuseday, Monday));
     }
 }

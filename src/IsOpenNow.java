@@ -54,20 +54,20 @@ public class IsOpenNow {
     }
 
     public static boolean isOpenNow(int hour, Hours[] today, Hours[] yesterday){
-        Hours[] time = today;
+        Hours[] schedule = today;
         int i = 0;
-        while(i < time.length){
-            int startH = time[i].startH;
-            int finishH = time[i].finishH;
+        while(i < schedule.length){
+            int startH = schedule[i].startH;
+            int finishH = schedule[i].finishH;
             if(isOpenNow1(hour, startH, finishH))
                 return true;
             i++;
         }
-        time = yesterday;
+        schedule = yesterday;
         i = 0;
-        while(i < time.length){
-            int startH = time[i].startH;
-            int finishH = time[i].finishH;
+        while(i < schedule.length){
+            int startH = schedule[i].startH;
+            int finishH = schedule[i].finishH;
             if(isOpenNow2(hour, startH, finishH))
                 return true;
             i++;
