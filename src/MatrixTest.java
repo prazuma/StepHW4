@@ -9,16 +9,14 @@ public class MatrixTest {
     
     @Test
     public void testCalculateSum(){
-        double[][] a3 = Matrix.initializeMatrixA(3);
-        double[][] b3 = Matrix.initializeMatrixB(3);
-        double[][] a4 = Matrix.initializeMatrixA(4);
-        double[][] b4 = Matrix.initializeMatrixB(4);
-        double[][] a5 = Matrix.initializeMatrixA(5);
-        double[][] b5 = Matrix.initializeMatrixB(5);
-        assertEquals(Matrix.calculateSum(Matrix.mulMatrix(a3, b3)), 450.0, 0);
-        assertEquals(Matrix.calculateSum(Matrix.mulMatrix(a4, b4)), 3680.0, 0);
-        assertEquals(Matrix.calculateSum(Matrix.mulMatrix(a5, b5)), 18250.0, 0);
-        assertEquals(Matrix.calculateSum(Matrix.mulMatrix(a3, b5)), -1, 0);
+        double[][] c3 = {{5, 14, 23}, {14, 50, 86}, {23, 86, 149}};
+        double[][] c4 = {{14, 38, 62, 86}, {38, 126, 214, 302}, {62, 214, 366, 518}, {86, 302, 518, 734}};
+        double[][] c5 = {{30, 80, 130, 180, 230}, {80, 255, 430, 605, 780}, {130, 430, 730, 1030, 1330}, {180, 605, 1030, 1455, 1880}, {230, 780, 1330, 1880, 2430}};
+        double[][] cNull = null;
+        assertEquals(Matrix.calculateSum(c3), 450.0, 0);
+        assertEquals(Matrix.calculateSum(c4), 3680.0, 0);
+        assertEquals(Matrix.calculateSum(c5), 18250.0, 0);
+        assertEquals(Matrix.calculateSum(cNull), -1, 0);
     }
 
     @Test
